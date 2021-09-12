@@ -1,3 +1,44 @@
+// CRONOMETRO --- Decidi não continuar, pois quando aperta na função o cronometro para;
+let mm = 0;
+let ss = 0;
+
+let tempo = 1000;
+let cron;
+
+//Inicia o cronometro
+function start() {
+    cron = setInterval(() => { timer(); }, tempo);
+}
+//Para o cronometro 
+function pause() {
+    clearInterval(cron);
+}
+//Para o cronometro e limpa as variáveis
+function stop() {
+    clearInterval(cron);
+    mm = 0;
+    ss = 0;
+
+document.getElementById('counter').innerText = '00:00';
+}
+
+//Faz a contagem do tempo e exibição
+function timer() {
+    ss++; 
+
+    if (ss == 59) { ss = 0; mm++;}
+
+    //Cria uma variável com o valor tratado HH:MM:SS
+    let format = (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss);
+    
+    //Insere o valor tratado no elemento counter
+    document.getElementById('counter').innerText = format;
+
+    //Retorna o valor tratado
+    return format;
+}
+
+
 // VARIÁVEIS 
 const resultsDiv = document.getElementById('results');
 const anagramas5 = document.getElementById("anagramas5");
@@ -51,8 +92,12 @@ const getSetsBySize = (minSize, maxSize) => {
     return filteredSets
 }
 
+
+
+// COMANDO PARA O ANAGRAMA DE 3 PALAVRAS 
+// PRECISA MELHORAR O DESEMPENHO PARA RODAR PALAVRAS GRANDES 
 // COMANDO PARA O ANAGRAMA DE 5 OU +
-const getSetsOfFiveAnagrams = () => {
+function getSetsOfFiveAnagrams(){
     let setsOfFive = [];
     let anagramSets = getAnagramsSets();
 
@@ -69,16 +114,16 @@ anagramas5.addEventListener("click", function () {
     showResults(getSetsOfFiveAnagrams());
   });
 
-const containsExactly = (value, reference) => {
+
+//LÓGICA PARA 2 PALAVRAS
+function containsExactly(value, reference){
     let contain = true;
     let newArray = reference.split('');
 
     for (let i = 0; i < value.length; i++) {
-
         if (newArray.indexOf(value[i]) === -1){
             contain = false
         };
-
         newArray.splice(newArray.indexOf(value[i]), 1);
     };
     return contain;
@@ -97,12 +142,8 @@ const splicer  = (value, stringToBeSpliced) => {
     return arrayToBeSpliced.join('');
 };
 
-const lengthValidator =  (value, minLength, maxLength) => {
-    return (value.length >= minLength && value.length <= maxLength)
-}
-
 // COMANDO PARA O ANAGRAMA DE 2 PALAVRAS
-const get2WordsAnagrams = (value) => {
+function get2WordsAnagrams(value){
     let respost = letras(value);
     let anagramSets = getSetsBySize(2, respost.length - 2);
     let resultsArr = [];
@@ -128,20 +169,14 @@ anagramas2.addEventListener("click", function () {
     showResults(get2WordsAnagrams(typedText));
 });
 
-// COMANDO PARA O ANAGRAMA DE 3 PALAVRAS
-// EM CONSTRUÇÃO! -- DIFICIL PACAS --- RACIOCINIO NAS ULTIMAS LINHAS
-
-
 // LIMPAR OS TEXTOS
 resetButton.addEventListener('click', function () {
     resultsDiv.innerHTML = ""
 })
 
-// COMANDO PARA O ANAGRAMA DE 3 PALAVRAS 
-// PRECISA MELHORAR O DESEMPENHO PARA RODAR PALAVRAS GRANDES 
-const get3WordsAnagrams = (value) => {
+function get3WordsAnagrams(value){
     let sortedWords = letras(value);
-    let anagramSets = getSetsBySize(2, sortedWords.length -4);
+    let anagramSets = getSetsBySize(2, sortedWords.length);
     let anagramsArr = [];
     let usedAnagrams = [];
 
@@ -149,18 +184,13 @@ const get3WordsAnagrams = (value) => {
 
         if (containsExactly(key, sortedWords)){ 
             usedAnagrams.push(key)  
-            let usedMiddleAnagram = []
-            let firstSplicedWord = splicer(key, sortedWords);
+            let letrasSep = splicer(key, sortedWords);
 
             for (let secondKey in anagramSets) {
 
-                if (secondKey.length <= firstSplicedWord.length - 2 && containsExactly(secondKey,firstSplicedWord) &&  !usedAnagrams.includes(secondKey)){
-                    usedMiddleAnagram.push(secondKey)
-                    let secondSplicedWord = splicer(secondKey, firstSplicedWord)
-
-                    if (anagramSets[secondSplicedWord] !== undefined && !usedAnagrams.includes(secondSplicedWord) && !usedMiddleAnagram.includes(secondSplicedWord)) {
-                        anagramsArr.push(`${anagramSets[key]} + ${anagramSets[secondKey]} + ${anagramSets[secondSplicedWord]}`)
-                    };
+                if (secondKey.length <= letrasSep.length - 2 && containsExactly(secondKey,letrasSep)){
+                    let secondSplicedWord = splicer(secondKey, letrasSep)
+                    anagramsArr.push(`${anagramSets[key]} + ${anagramSets[secondKey]} + ${anagramSets[secondSplicedWord]}`)
                 }
             } 
         };  
@@ -172,8 +202,3 @@ anagramas3.addEventListener("click", function () {
     let typedText = document.getElementById("input").value;
     showResults(get3WordsAnagrams(typedText));
 });
-
-// LIMPAR OS TEXTOS
-resetButton.addEventListener('click', function () {
-    resultsDiv.innerHTML = ""
-})
