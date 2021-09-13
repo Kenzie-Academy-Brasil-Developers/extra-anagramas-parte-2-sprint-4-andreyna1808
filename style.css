@@ -4,7 +4,7 @@ body{
     text-align: center;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 320px;
     height: 1200px;
     align-items: center;
 }
@@ -32,6 +32,7 @@ button{
 .resultado{
     text-align: center;
     padding: 20px;
+    width: 300px;
 }
 button:hover {
      background:linear-gradient(to bottom, red 5%, orange 100%);
@@ -48,6 +49,13 @@ button:hover {
     margin: 20px;
 }
 
+/* RELOGIO */
+.digital {
+    color: #FFF;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
 @media (min-width: 768px) {
     body{
     text-align: center;
@@ -59,6 +67,12 @@ button:hover {
     .img {
         width: 100%;
     }
+    .resultado{
+    text-align: center;
+    padding: 20px;
+    width: 800px;
+    margin: 30px;
+}
     p{
     text-align:justify
     }
