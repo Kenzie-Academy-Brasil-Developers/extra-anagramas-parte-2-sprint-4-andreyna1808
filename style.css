@@ -1,0 +1,94 @@
+body{
+    background-color:black;
+    color: rgb(207, 207, 207);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    height: 1200px;
+    align-items: center;
+}
+p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: justify;
+}
+
+input{
+    height: 60px;
+    border-radius: 20px;
+    margin: 20px 10px;
+    width: 180px;
+}
+button{
+    cursor: pointer;
+    background-color: rgb(255, 136, 0);
+    border-radius: 20px;
+    height: 60px;  
+    width: 200px;
+    margin: 10px;
+}
+.resultado{
+    text-align: center;
+    padding: 20px;
+    width: 300px;
+}
+button:hover {
+     background:linear-gradient(to bottom, red 5%, orange 100%);
+} 
+#results {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.resultado p {
+    color: #E5E5E5;
+    text-align: justify;
+    word-break: break-all;
+    margin: 20px;
+}
+
+/* RELOGIO */
+.digital {
+    color: #FFF;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    body{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 950px;
+    align-items: center;
+    }
+    .img {
+        width: 100%;
+    }
+    .resultado{
+    text-align: center;
+    padding: 20px;
+    width: 800px;
+    margin: 30px;
+}
+    p{
+    text-align:justify
+    }
+    input{
+        height: 60px;
+        border-radius: 20px;
+        margin: 20px 10px;
+        width: 180px;
+    }
+    button{
+        cursor: pointer;
+        background-color: rgb(255, 136, 0);
+        border-radius: 20px;
+        height: 60px;  
+        width: 120px;
+        margin: auto;
+    }
+
+}

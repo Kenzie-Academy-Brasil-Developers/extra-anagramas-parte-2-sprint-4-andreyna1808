@@ -38,14 +38,14 @@ Lembre-se de como você usou a função `alphabetize()` para ordenar as letras a
 A forma ordenada alfabeticamente será a mesma para cada palavra em um conjunto de anagramas. Você pode usar a forma alfabética como um identificador único de um conjunto de anagramas. Como um passo intermediário para resolver os problemas acima, tente usar um Objeto para agrupar conjuntos de anagramas mútuos ao criar uma estrutura de dados como esta:
 
 ```js
-anagramSets = {
+conjutos = {
    "aort": ["ator", "rota", "rato", "tora"],
    "aops": ["sapo", "sopa", ... ],
    ...
 };
 ```
 
-Então você pode fazer o loop das três entradas de anagramSets e exibir aquelas que tiverem 5 ou mais palavras.
+Então você pode fazer o loop das três entradas de conjutos e exibir aquelas que tiverem 5 ou mais palavras.
 
 ---
 
